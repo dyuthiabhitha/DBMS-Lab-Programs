@@ -1,0 +1,64 @@
+create database banking;
+use banking;
+create table Branch(
+branchname varchar(20),
+branchcity varchar(20),
+assets real, 
+primary key(branchname));
+
+create table BankAccount(
+accnum int,
+branchname varchar(20),
+balance real, 
+primary key(accnum),
+foreign key(branchname) references Branch(branchname));
+
+create table BankCustomer(
+customername varchar(20),
+customerstreet varchar(20),
+customercity varchar(20),
+primary key(customername));
+
+create table Depositer(
+customername varchar(20),
+accnum int,
+primary key(customername, accnum),
+foreign key(customername) references BankCustomer(customername),
+foreign key(accnum) references BankAccount(accnum));
+
+create table Loan(
+loannum int,
+branchname varchar(20),
+amount real,
+primary key(loannum),
+foreign key(branchname) references Branch(branchname));
+
+desc Branch;
+desc BankAccount;
+desc BankCustomer;
+desc Depositer;
+desc Loan;
+
+insert into Branch values
+('SBI_Chamrajpet', 'Bangalore', 50000), ('SBI_ResidencyRoad', 'Bangalore', 10000), ('SBI-ShivajiRoad', 'Bombay', 20000),
+('SBI_ParliamentRoad', 'Delhi', 10000), ('SBI_JantarMantar', 'Delhi', 20000);
+select * from Branch;
+
+insert into BankAccount values
+(1,'SBI_Chamrajpet', 2000), (2, 'SBI_ResidencyRoad', 5000), (3, 'SBI-ShivajiRoad', 6000), (4, 'SBI_ParliamentRoad', 9000), (5, 'SBI_JantarMantar', 8000),
+(6, 'SBI-ShivajiRoad', 4000), (8, 'SBI_ResidencyRoad', 4000), (9, 'SBI_ParliamentRoad', 3000), (10, 'SBI_ResidencyRoad', 5000), (11, 'SBI_JantarMantar', 2000);
+ select* from BankAccount;
+ 
+ insert into BankCustomer values 
+ ('Avinash', 'Bull Temple Road', 'Bangalore'), ('Dinesh', 'Bannerghatta Road','Bangalore'),('Mohan', 'National College_Road', 'Bangalore'),
+ ('Nikhil','Akbar Road','Delhi'),('Ravi','Prithviraj Road', 'Delhi');
+ select * from BankCustomer;
+ 
+ insert into Depositer values 
+ ('Avinash', 1),('Dinesh', 2),('Nikil', 4),('Ravi', 5),('Avinash', 8),
+ ('Nikhil', 9), ('Dinesh', 10), ('Nikil', 11);
+ select * from Depositer;
+
+insert into Loan values (1, 'SBI_Chamrajpet', 1000), (2, 'SBI_ResidencyRoad', 2000), (3, 'SBI-ShivajiRoad', 3000), (4, 'SBI_ParliamentRoad', 4000), (5, 'SBI_JantarMantar', 5000);
+select * from Loan;
+
