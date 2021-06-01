@@ -1,0 +1,115 @@
+create database supplier; 
+
+use supplier; 
+
+ 
+
+ 
+
+create table Suppliers( 
+
+sid int primary key, 
+
+sname varchar(20) not null, 
+
+address varchar(20)not null); 
+
+     
+
+     
+
+create table Parts( 
+
+pid int primary key, 
+
+    pname varchar(20) not null, 
+
+    color varchar(10) not null); 
+
+     
+
+     
+
+create table Catalog( 
+
+sid int, 
+
+pid int, 
+
+    cost real not null, 
+
+    primary key(sid,pid), 
+
+    foreign key(sid) references Suppliers(sid), 
+
+    foreign key(pid) references Parts(pid)); 
+
+        desc suppliers; 
+
+        desc parts; 
+
+        desc catalog; 
+
+     
+
+     
+
+insert into Suppliers  
+
+values 
+
+(10001,"Acme Widget","Bangalore"), 
+
+        (10002,"Johns","Kolkata"), 
+
+        (10003,"Vimal","Mumbai"), 
+
+        (10004,"Reliance","Delhi"); 
+
+        select * from suppliers; 
+
+ 
+
+insert into Parts  
+
+values 
+
+(20001,"Book","Red"), 
+
+        (20002,"Pen","Red"), 
+
+        (20003,"Pencil","Green"), 
+
+        (20004,"Mobile","Green"), 
+
+        (20005,"Charger","Black"); 
+
+        select * from parts; 
+
+         
+
+ 
+
+insert into Catalog  
+
+values 
+
+(10001,20001,10), 
+
+        (10001,20002,10), 
+
+        (10001,20003,30), 
+
+        (10001,20004,10), 
+
+        (10001,20005,10), 
+
+        (10002,20001,10), 
+
+        (10002,20002,20), 
+
+        (10003,20003,30), 
+
+        (10004,20003,40); 
+
+        select * from catalog; 
