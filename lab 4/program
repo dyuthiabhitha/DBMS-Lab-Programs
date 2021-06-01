@@ -1,0 +1,167 @@
+create database studentfacdb; 
+
+use studentfacdb; 
+
+create table STUDENT( 
+
+snum int, 
+
+sname varchar(60), 
+
+major varchar(50), 
+
+lvl varchar(50), 
+
+age int, 
+
+primary key(snum) 
+
+); 
+
+ 
+
+create table CLASS( 
+
+cname varchar(60), 
+
+meetsat timestamp, 
+
+room varchar(60), 
+
+fid int, 
+
+primary key (cname) 
+
+); 
+
+ 
+
+create table enrolled( 
+
+snum int, 
+
+cname varchar(60), 
+
+primary key(snum,cname), 
+
+foreign key(snum) references STUDENT(snum) 
+
+on update cascade on delete cascade, 
+
+foreign key(cname) references CLASS(cname) 
+
+on update cascade on delete cascade 
+
+); 
+
+ 
+
+create table FACULTY( 
+
+fid int, 
+
+fname varchar(60), 
+
+deptid int, 
+
+primary key(fid) 
+
+); 
+
+desc student; 
+
+desc class; 
+
+desc enrolled; 
+
+desc faculty; 
+
+ 
+
+insert into STUDENT  
+
+values  
+
+(1,'Jhon','CS','Sr',19),  
+
+        ( 2,'Smith','CS','Jr',20),  
+
+        (3,'Jacob','CV','Sr',20),  
+
+        (4,'Tom','CS','Jr',20),  
+
+        (5,'Rahul','CS','Jr',20),  
+
+        (6,'Rita','CS','Sr',21); 
+
+ 
+
+insert into CLASS values  
+
+('Class1',"12/11/15 10:15:16.00000",'R1',14), 
+
+('Class10',"12/11/15 10:15:16.00000",'R128',14),  
+
+    ('Class2',"12/11/15 10:15:20.00000",'R2',12), 
+
+('Class3',"12/11/15 10:15:25.00000",'R3',11),  
+
+    ('Class4',"12/11/15 20:15:20.00000",'R4',14),  
+
+    ('Class5',"12/11/15 20:15:20.00000",'R3',15), 
+
+('Class6',"12/11/15 13:20:20.00000",'R2',14),  
+
+    ('Class7',"12/11/15 10:10:10.00000",'R3',14); 
+
+ 
+
+insert into ENROLLED  
+
+values  
+
+(1,'Class1'), 
+
+(2,'Class1'), 
+
+        (3,'Class3'), 
+
+        (4,'Class3'), 
+
+        (5,'Class4'), 
+
+        (1,'Class5'), 
+
+(2,'Class5'), 
+
+        (3,'Class5'), 
+
+        (4,'Class5'), 
+
+        (5,'Class5'); 
+
+ 
+
+insert into FACULTY  
+
+values  
+
+(11,'Harish',1000), 
+
+        (12,'MV',1000), 
+
+        (13,'Mira',1001), 
+
+        (14,'Shiva',1002), 
+
+        (15,'Nupur',1000); 
+
+ 
+
+select * from STUDENT; 
+
+select * from CLASS; 
+
+select * from ENROLLED; 
+
+select * from FACULTY; 
